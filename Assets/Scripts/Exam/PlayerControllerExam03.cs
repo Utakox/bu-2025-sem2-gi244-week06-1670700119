@@ -39,5 +39,25 @@ public class PlayerControllerExam03 : MonoBehaviour
         {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
         }
+
+// spacebar for autofire
+    if (shootAction.WasPressedThisFrame())
+        {
+            enableAutoFireMode = !enableAutoFireMode;
+        }
+
+
+// autofire mode pew pew
+
+
+        if (enableAutoFireMode)
+        {
+            autoFireInterval -= Time.deltaTime;
+            if (autoFireInterval <= 0)
+            {
+                Instantiate(projectilePrefab, transform.position, transform.rotation);
+                autoFireInterval = 0.001f;
+            }
+        }
     }
 }
